@@ -1,0 +1,13 @@
+{
+  "mainNetwork": 101001,
+  "mainToken": 76234765,
+  "configurationAddress": "ARAMICOCHLHSX3G5KCKK23M72ETI537GK5VGLOVHXAGPIELWYJKIMGKK6I",
+  "useFilesystemPublicConfiguration": false,
+  "environment": "testnet",
+  "branch": "beta",
+  "underMaintenance": false,
+  "initChainFrom": 4,
+  "initChainTo": 101001,
+  "initTokenFrom": "0xfb76D19Fb0d05F72548629eB6207b8071C18ECc6",
+  "initTokenTo": "37074699"
+}
