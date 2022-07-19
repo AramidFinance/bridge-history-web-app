@@ -2,7 +2,6 @@ import { useState, useCallback, useEffect, useContext } from 'react';
 import { connect as connectAlgoWalletConnect, disconnect as disconnectAlgoWalletConnect } from './AlgoConnectors/WalletConnect';
 import { providers } from 'ethers';
 import { IInternalEvent } from '@walletconnect/types';
-import walletConnectLogo from '../../assets/walletconnect-circle-white.png';
 import peraLogo from '../../assets/peralogo.png';
 import Wallet from './Wallet';
 import { AppContext } from '../../context/AppContext';

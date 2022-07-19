@@ -266,7 +266,7 @@ const Home: NextPage = () => {
   }, [appData.sourceChainConfiguration]);
 
   return (
-    <div className="flex flex-col bg-[url('../public/background.png')] bg-cover bg-placeholder-purple text-gray-100 md:text-lg min-h-screen">
+    <div className="flex flex-col bg-[url('../public/background.webp')] bg-cover bg-placeholder-purple text-gray-100 md:text-lg min-h-screen">
       <Head>
         <title>Bridge History | AramidFinance</title>
         <meta name="description" content="Ethereum to Algorand bidirectional bridge" />
