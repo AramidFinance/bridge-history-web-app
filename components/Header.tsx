@@ -23,13 +23,13 @@ const Header: FunctionComponent = () => {
         <a onClick={() => router.push('/')}>
           <div>
             <div className="tracking-wider 3xl:hidden">
-              <Image src={aramidLogo} alt="AramidFinance" title="AramidFinance" width={252} height={75} />
+              <Image src={aramidLogo} alt="AramidFinance" title="AramidFinance" width={186} height={64} />
             </div>
             <div className="tracking-wider hidden 3xl:block 4xl:hidden">
-              <Image src={aramidLogo} alt="AramidFinance" title="AramidFinance" width={353} height={105} />
+              <Image src={aramidLogo} alt="AramidFinance" title="AramidFinance" width={232} height={80} />
             </div>
             <div className="tracking-wider hidden 4xl:block">
-              <Image src={aramidLogo} alt="AramidFinance" title="AramidFinance" width={494} height={147} />
+              <Image src={aramidLogo} alt="AramidFinance" title="AramidFinance" width={370} height={128} />
             </div>
           </div>
         </a>
