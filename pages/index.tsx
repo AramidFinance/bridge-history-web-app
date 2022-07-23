@@ -104,7 +104,7 @@ const Home: NextPage = () => {
       appData.sourceProvider.on('disconnect', handleDisconnect);
 
       return () => {
-        if (appData.sourceProvider.removeListener) {
+        if (appData.sourceProvider && appData.sourceProvider.removeListener) {
           appData.sourceProvider.removeListener('accountsChanged', handleAccountsChanged);
           appData.sourceProvider.removeListener('chainChanged', handleSourceChainChanged);
           appData.sourceProvider.removeListener('disconnect', handleDisconnect);
@@ -279,6 +279,7 @@ const Home: NextPage = () => {
         <SourceProviderEffect />
         <ConnectSourceChainEffect />
       </main>
+      <div className="fixed bottom-0 left-0 w-3 h-3" onClick={() => console.log(appData)}/>
     </div>
   );
 };

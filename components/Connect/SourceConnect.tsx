@@ -25,7 +25,7 @@ const SourceConnect = (): JSX.Element => {
   }, [appData.sourceAlgoConnector, appData.sourceWeb3Provider]);
 
   useEffect(() => {
-    setConnected(appData.connectedSourceChain && appData.connectedSourceChain == appData.sourceChain);
+    setConnected(!!appData.connectedSourceChain && !!appData.sourceChain);
   }, [appData.connectedSourceChain, appData.sourceChain]);
 
   useEffect(() => {

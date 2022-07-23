@@ -1,12 +1,10 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFaucet } from '@fortawesome/free-solid-svg-icons';
 import aramidLogo from '../public/aramid-logo.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import getAppConfiguration from '../scripts/common/getAppConfiguration';
 import AppConfiguration from '../scripts/interface/configuration/AppConfiguration';
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
+import SourceConnect from './Connect/SourceConnect';
 
 const Header: FunctionComponent = () => {
   const router = useRouter();
@@ -34,6 +32,7 @@ const Header: FunctionComponent = () => {
           </div>
         </a>
       </div>
+      <SourceConnect />
     </header>
   );
 };

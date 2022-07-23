@@ -12,7 +12,7 @@ const ConnectSourceChainEffect = () => {
     if (!appData.publicConfiguration) return;
     if (!appData.isBridgeTabOpen) return;
     console.debug('index effect 07', appData);
-    if (appData.sourceChainConfiguration && appData.sourceChainConfiguration.type == 'eth' && ethers.utils.isAddress(appData.sourceAddress) && appData.connectedSourceChain != appData.sourceChain) {
+    /*if (appData.sourceChainConfiguration && appData.sourceChainConfiguration.type == 'eth' && ethers.utils.isAddress(appData.sourceAddress) && appData.connectedSourceChain != appData.sourceChain) {
       console.log(`attempting to switch to source network (${appData.sourceChain}) from current network (${appData.connectedSourceChain})`, {
         isBridgeTabOpen: appData.isBridgeTabOpen,
         isReviewTabOpen: appData.isReviewTabOpen,
@@ -32,7 +32,7 @@ const ConnectSourceChainEffect = () => {
         console.log('error switching networks:', err);
       }
       // reconnect
-    }
+    }*/
   }, [
     appData.sourceChainConfiguration,
     appData.connectedSourceChain,
