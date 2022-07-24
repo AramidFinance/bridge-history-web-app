@@ -11,7 +11,7 @@ import AppConfiguration from '../scripts/interface/configuration/AppConfiguratio
 import SecureConfiguration from '../scripts/interface/configuration/SecureConfiguration';
 import PublicConfigurationRoot from '../scripts/interface/mapping/PublicConfigurationRoot';
 import MappingItem from '../scripts/interface/mapping/MappingItem';
-import { CovalentTransactionItem } from '../scripts/interface/CovalentTransaction';
+import { CovalentTransaction } from '../scripts/eth/CovalentTransaction';
 
 export interface IState {
   // Configurations
@@ -101,9 +101,8 @@ export interface IState {
   algoAssets?: IAssetData[];
   destAlgoAssets?: IAssetData[];
 
-  bridgeUserAccounts?: Array<string>;
-  bridgeUserOutwardTransactions?: { [key: string]: Array<CovalentTransactionItem> };
-  bridgeUserInwardTransactions?: { [key: string]: Array<CovalentTransactionItem> };
+  bridgeUserOutwardTransactions?: Array<CovalentTransaction>;
+  bridgeUserInwardTransactions?: Array<CovalentTransaction>;
 
   setAppData?: (data: Partial<IState>) => void;
 }

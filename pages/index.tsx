@@ -12,6 +12,7 @@ import Header from '../components/Header';
 import TrackConfigurationsEffect from '../effects/global/TrackConfigurationsEffect';
 import ConnectSourceChainEffect from '../effects/chain/evm/ConnectSourceChainEffect';
 import SourceProviderEffect from '../effects/chain/evm/SourceProviderEffect';
+import { History } from '../components/History';
 
 const defaultErrorMessage = ' ';
 
@@ -278,6 +279,7 @@ const Home: NextPage = () => {
         <TrackConfigurationsEffect />
         <SourceProviderEffect />
         <ConnectSourceChainEffect />
+        <History />
       </main>
       <div className="fixed bottom-0 left-0 w-3 h-3" onClick={() => console.log(appData)}/>
     </div>

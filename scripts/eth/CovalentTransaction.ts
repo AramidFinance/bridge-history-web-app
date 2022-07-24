@@ -21,7 +21,8 @@ export interface CovalentLogEventTransaction {
   decoded: DecodedCovalentLog;
 }
 
-export interface CovalentTransactionItem {
+export interface CovalentTransaction {
+  chain_id: number;
   block_signed_at: string;
   block_height: number;
   tx_hash: string;
@@ -42,11 +43,20 @@ export interface CovalentTransactionItem {
   log_events: Array<CovalentLogEventTransaction>;
 }
 
-export interface CovalentTransaction {
+export interface CovalentTransactions {
   address: string;
   updated_at: string;
   next_update_at: string;
   quote_currency: string;
   chain_id: number;
-  items: Array<CovalentTransactionItem>;
+  items: Array<CovalentTransaction>;
 }
+
+export interface CovalentReturn {
+  data: CovalentTransactions;
+  error: Boolean;
+  error_code: string | null;
+  error_message: string | null;
+}
+
+export const CovalentSupportedNetworks: Array<number> = [1, 42, 137, 80001, 56, 97, 1313161554, 1313161555]; // supports a lot more than this, but these are the only ones we support
