@@ -125,6 +125,9 @@ export const defaultData: IState = {
   destinationAmountFormatted: '0',
   feeAmount: '0',
   feeAmountFormatted: '0',
+
+  bridgeUserOutwardTransactions: [],
+  bridgeUserInwardTransactions: [],
 };
 
 export const AppContext = createContext<IState>({ ...defaultData });

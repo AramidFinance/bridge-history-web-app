@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../context/AppContext";
 import { CovalentSupportedNetworks, CovalentReturn, CovalentTransaction, CovalentLogEventTransaction } from "../scripts/eth/CovalentTransaction";
 import { utils } from "ethers";
+import { HistoryTransaction } from "./HistoryTransaction";
 
 export const History = () => {
   const appData = useContext(AppContext);
@@ -37,10 +38,13 @@ export const History = () => {
         const logItem: CovalentLogEventTransaction = tx.log_events[i];
         if (logItem.decoded !== null && logItem.decoded.name && logItem.decoded.name.toLowerCase() === "transfer") {
           // the transfer method takes 3 parameters, a "from" address, a "to" address, and a "value" which i'm actually not sure what it does (it isn't amount transferred)
-          // index 1 is the "to" address, and if that goes to the user address, it's a self-claim, if it goes the bridge address then it's a token bridge
+          // index 2 is the "to" address, and if that goes to the user address, it's a self-claim, if it goes the bridge address then it's a token bridge
+          // it's indexed where 0 seems to be what the method is referred to, 1 is the "from" address, and 2 is the "to" address
+          // and raw_log_data tells us the amount of tokens transferred, confusing but this seems to match all observations
           // the third scenario where it goes to a different address, then it's a claim on behalf of another user, and it won't be included as a transaction  
-          const toAddress = logItem.raw_log_topics[1].toLowerCase();
-          const txWithChainId = { ...tx, chainId }; // adding chain id to each transaction item so we know which chain it's on when displaying in UI
+          const toAddress = logItem.raw_log_topics[2].toLowerCase();
+          const chain_id = +chainId;
+          const txWithChainId = { ...tx, chain_id }; // adding chain id to each transaction item so we know which chain it's on when displaying in UI
           if (ethAddressCompare(toAddress, userAddress)) {
             inwardTransactions.push(txWithChainId);
           } else if (ethAddressCompare(toAddress, bridgeAddress)) {
@@ -66,7 +70,7 @@ export const History = () => {
           currIndex++;
         };
 
-        if (tx.tx_hash === appDataInwardTransactions[currIndex].tx_hash) {
+        if (currIndex < appDataInwardTransactions.length && tx.tx_hash === appDataInwardTransactions[currIndex].tx_hash) {
           return; // if an identical transaction exists then this network was already processed
         } else if (currIndex >= appDataInwardTransactions.length) {
           appDataInwardTransactions.push(tx);
@@ -94,7 +98,7 @@ export const History = () => {
           currIndex++;
         };
 
-        if (tx.tx_hash === appDataOutwardTransactions[currIndex].tx_hash) {
+        if (currIndex < appDataOutwardTransactions.length && tx.tx_hash === appDataOutwardTransactions[currIndex].tx_hash) {
           return;
         } else if (currIndex >= appDataOutwardTransactions.length) {
           appDataOutwardTransactions.push(tx);
@@ -121,16 +125,24 @@ export const History = () => {
   }, [appData.sourceAddress])
 
   return (
-    <div className="flex flex-col my-4 md:w-[520px] 3xl:w-[728px] 4xl:w-[1019px] rounded-[60px] 3xl:rounded-[84px] 4xl:rounded-[118px] 3xl:rounded-[84px] 4xl:rounded-[118px] bg-background-card backdrop-blur border border-dark-elevation border-b border-[#F6F6F61A] justify-center pb-10 self-center drop-shadow-menu-default drop-shadow-menu-2">
+    <div className="flex flex-col my-4 md:w-[600px] 3xl:w-[840px] 4xl:w-[1176px] rounded-[60px] 3xl:rounded-[84px] 4xl:rounded-[118px] 3xl:rounded-[84px] 4xl:rounded-[118px] bg-background-card backdrop-blur border border-dark-elevation border-b border-[#F6F6F61A] justify-center pb-10 self-center drop-shadow-menu-default drop-shadow-menu-2">
       <div className={`self-center flex flex-col text-center mx-6 mt-3 gap-2 text-base 3xl:text-xl 4xl:text-3xl`}>
-        <div className="flex text-base font-medium justify-center items-center 3xl:text-2xl 4xl:text-4xl select-none ">
+        <div className="flex text-base font-medium justify-center items-center 3xl:text-2xl 4xl:text-4xl">
           <div
-            className={`ease-in-out duration-100 bg-background-card border-dark-elevation w-1/2 text-center py-4 3xl:py-8 4xl:py-12`}
+            className={`text-center py-4 3xl:py-8 4xl:py-12 text-xl`}
           >
-            History
+            Transaction History
           </div>
         </div>
-        stuff goes here
+      </div>
+      <div>
+        <div className="justify-around h-[509px] 3xl:h-[713px] 4xl:h-[997.64px] px-2 overflow-auto scrollbar-thin scrollbar-thumb-history-scrollbar-thumb scrollbar-track-history-scrollbar scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+          {appData.bridgeUserOutwardTransactions.map((tx) => (
+            <div key={tx.tx_hash}>
+              <HistoryTransaction transaction={tx} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

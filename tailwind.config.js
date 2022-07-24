@@ -77,6 +77,9 @@ module.exports = {
         'search-blue-hover': 'rgba(132, 76, 255, 1)',
         'reset-left': 'rgba(195, 91, 254, 0.8)', // pink
         'reset-right': 'rgba(151, 225, 254, 0.8)', // light blue
+        'history-tx': 'rgba(44, 28, 74, 0.7)',
+        'history-scrollbar': 'rgba(15, 0, 40, 0.8)',
+        'history-scrollbar-thumb': 'rgba(116, 7, 176, 0.9)',
       },
       fontFamily: {
         satoshi: ['Satoshi'],
@@ -92,6 +95,7 @@ module.exports = {
         'reverse-icon-hover': 'inset 0px 7.21262px 10.3566px -6.65781px rgba(196, 159, 255, 0.5), inset 0px 1.29457px 2.03433px -0.739756px #C49FFF, inset 0px -15.165px 12.5759px -11.8361px rgba(103, 72, 154, 0.3), inset 0px 18.124px 18.4939px -8.87708px rgba(204, 172, 255, 0.3), inset 0px 0.739756px 3.3289px rgba(181, 156, 222, 0.3), inset 0px 0.184939px 7.39756px rgba(235, 223, 255, 0.3)',
         'token-default': '0px 4px 8px rgba(0, 0, 0, 0.25), inset 0px 7.21262px 10.3566px -6.65781px rgba(252, 159, 255, 0.5), inset 0px 1.29457px 2.03433px -0.739756px #FC9DFF, inset 0px -15.165px 12.5759px -11.8361px rgba(152, 73, 154, 0.3), inset 0px 18.124px 18.4939px -8.87708px rgba(252, 174, 255, 0.3), inset 0px 0.739756px 3.3289px rgba(212, 108, 216, 0.3), inset 0px 0.184939px 7.39756px rgba(254, 222, 255, 0.2);',
         'token-hover': '0px 4px 8px rgba(0, 0, 0, 0.25), inset 0px 7.21262px 10.3566px -6.65781px rgba(252, 159, 255, 0.7), inset 0px 1.29457px 2.03433px -0.739756px #FC9DFF, inset 0px -15.165px 12.5759px -11.8361px rgba(152, 73, 154, 0.5), inset 0px 18.124px 18.4939px -8.87708px rgba(252, 174, 255, 0.5), inset 0px 0.739756px 3.3289px rgba(212, 108, 216, 0.5), inset 0px 0.184939px 7.39756px rgba(254, 222, 255, 0.4);',
+        'history-network': 'inset 0px 7.21262px 10.3566px -6.65781px rgba(157, 255, 235, 0.5), inset 0px 1.29457px 2.03433px -0.739756px #9DFFEB, inset 0px -15.165px 12.5759px -11.8361px rgba(71, 150, 133, 0.3), inset 0px 18.124px 18.4939px -8.87708px rgba(173, 255, 238, 0.3), inset 0px 0.739756px 3.3289px rgba(149, 215, 201, 0.3), inset 0px 0.184939px 7.39756px rgba(223, 255, 248, 0.2);'
       },
       dropShadow: {
         'menu-default': '0px 0px 9px rgba(51, 0, 255, 0.6)',
@@ -134,5 +138,9 @@ module.exports = {
         )
       }
     ),
+    require('tailwind-scrollbar'),
   ],
+  variants: {
+    scrollbar: ['rounded']
+  },
 };

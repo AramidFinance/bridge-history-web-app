@@ -6,6 +6,7 @@ import circle from '../../assets/circle.png';
 
 const getChainLogo = (chainLogo: string) => {
   // returns network logo
+  console.log('chain logo:', chainLogo);
   switch (chainLogo) {
     case 'eth':
       return ethLogo;
